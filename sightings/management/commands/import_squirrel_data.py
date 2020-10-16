@@ -7,55 +7,51 @@ from django.db import models
 from sightings.models import sightings
 
 class Command(BaseCommand):
-  help = 'Update the Squirrel database of the day every morning'
-
+  help = 'Update the database of the day every morning'
+  # 接收参数
   def add_arguments(self, parser):
-      parser.add_argument('path', type=str, help='path/to/file.csv')
+      parser.add_argument('path', type=str, help='文件路径')
 
   def handle(self, *args, **options):
-      path = options['path']  
+      path = options['path']  # 拿到参数的值
       #print(path)
       with open(path) as fp:
           data = list(csv.DictReader(fp))
-	  
-      def convertBool(str_):
-          if str(str_) in ['TRUE', 'true', 'True']:
-                  str_ = True
-          elif str(str_) in ['FALSE', 'false', 'False']:
-                  str_ = False
-          else:
-                  str_ = None
-          return str_
-          
-              
-                    
+
+          def testboolean(str_):
+              if str_ == 'true':
+                  return 1
+              else:
+                  return 0
           for i in data:
               detester = i['Date']
               date = datetime.datetime.strptime(detester,'%m%d%Y')
               #print(date)
-              squirrel = sightings(
-	      Latitude = i["X"],
-              Longtitude = i["Y"],
-              Unique_Squirrel_ID = i["Unique Squirrel ID"],
-              Shift = i['Shift'],
-              Date = date,
-              Age = i['Age'],
-              Primary_Fur_Color = i['Primary Fur Color'],
-              Location = i['Location'],
-              Specific_Location = i['Specific Location'],
-              Running = convertBool(i['Running']),
-              Chasing = convertBool(i['Chasing']),
-              Climbing = convertBool(i['Climbing']),
-              Eating = convertBool(i['Eating']),
-              Foraging = convertBool(i['Foraging']),
-              sOther_activities = i['Other Activities'],
-              Kuks = convertBool(i['Kuks']),
-              Quaas = convertBool(i['Quaas']),
-              Moans = convertBool(i['Moans']),
-              Tail_flags = convertBool(i['Tail flags']),
-              Tail_twitches = convertBool(i['Tail twitches']),
-              Approaches = convertBool(i['Approaches']),
-	      Indifferent=convertBool(i['Indifferent']),
-	      Runs_from = convertBool(i['Runs from']),
-	      )
-              squirrel.save()
+              squirrel = sightings()
+              squirrel.Latitude = i["X"]
+              squirrel.Longitude = i["Y"]
+              squirrel.Unique_Squirrel_ID = i["Unique Squirrel ID"]
+              squirrel.Shift = i['Shift']
+              squirrel.Date = date
+              squirrel.Age = i['Age']
+              squirrel.Primary_Fur_Color = i['Primary Fur Color']
+              squirrel.Location = i['Location']
+              squirrel.Specific_Location = i['Specific Location']
+              squirrel.Running = testboolean(i['Running'])
+              #print(i['Running'])
+              #print(squirrel.Running)
+              squirrel.Chasing = testboolean(i['Chasing'])
+              squirrel.Climbing = testboolean(i['Climbing'])
+              squirrel.Eating = testboolean(i['Eating'])
+              squirrel.Foraging = testboolean(i['Foraging'])
+              squirrel.Other_Activities = i['Other Activities']
+              squirrel.Kuks = testboolean(i['Kuks'])
+              squirrel.Quaas = testboolean(i['Quaas'])
+              squirrel.Moans = testboolean(i['Moans'])
+              squirrel.Tail_flags = testboolean(i['Tail flags'])
+              squirrel.Tail_twitches = testboolean(i['Tail twitches'])
+              squirrel.Approaches = testboolean(i['Approaches'])
+              squirrel.Indifferent = testboolean(i['Indifferent'])
+              squirrel.Runs_from = testboolean(i['Runs from'])
+              squirrel.save() #保存到数据库
+

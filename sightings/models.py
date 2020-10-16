@@ -4,9 +4,11 @@ from django.utils.translation import gettext as _
 
 class sightings(models.Model):
     Latitude=models.FloatField(
+            null=True,blank=True,
             help_text=_('Latitude'),
     )
     Longitude=models.FloatField(
+            null=True,blank=True,
             help_text=_('Longitude'),
     )
     Unique_Squirrel_ID=models.CharField(

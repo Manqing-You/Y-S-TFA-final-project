@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-app_name='sighting'
+
 
 urlpatterns = [
-    #path('',views.list_all,name='list_all'),
+    #path('sightings/',views.list_all,name='list_all'),
     
-    path('sightings/',include('sightings.urls')),
+    path('',include('sightings.urls')),
     path('admin/', admin.site.urls),
     path('map/',include('map.urls')),
     #path('sightings/',include('sightings.urls')),

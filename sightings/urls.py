@@ -2,6 +2,8 @@ from django.urls import path
   
 from . import views
 urlpatterns=[
-        #path('sightings/',views.mymap,name='sightings'),
-        path('map/',views.mymap,name='mymap'),
+        #path('sightings/',views.mymap,name='mymap'),
+        #path('map/',views.mymap,name='mymap'),
+        path('',views.list_all,name='list_all'),
+        path('<Unique_Squirrel_ID>/details/',views.details,name="details"),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
 class sightings(models.Model):
@@ -90,3 +91,5 @@ class sightings(models.Model):
     Runs_from=models.BooleanField(blank=True)
     def __str__(self):
         return self.Unique_Squirrel_ID
+    def getattrlist():
+        return [i.name for i in sightings._meta.fields]

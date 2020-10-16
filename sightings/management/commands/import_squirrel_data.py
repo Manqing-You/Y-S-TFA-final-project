@@ -28,8 +28,8 @@ class Command(BaseCommand):
               date = datetime.datetime.strptime(detester,'%m%d%Y')
               #print(date)
               squirrel = sightings()
-              squirrel.Latitude = i["X"]
-              squirrel.Longitude = i["Y"]
+              squirrel.Latitude = i["Y"]
+              squirrel.Longitude = i["X"]
               squirrel.Unique_Squirrel_ID = i["Unique Squirrel ID"]
               squirrel.Shift = i['Shift']
               squirrel.Date = date

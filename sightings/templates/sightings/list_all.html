@@ -33,12 +33,12 @@
                         </thead>
 
                         <tbody>
-                        {% for sight in sightings %}
+                        {% for sight in mylist_ %}
                                 <tr>
                                         <td>{{ sight.Unique_Squirrel_ID }}</td>
                                         <td>{{ sight.Date }}</td>
                                         <td>{{ sight.Shift }}</td>
-										<td><a href="{{sight.Unique_Squirrel_ID}}/details">Click to see details</a>
+					<td><a href="{{sight.Unique_Squirrel_ID}}/details">Click to see details</a>
                                 </tr>
                         {% endfor %}
                         </tbody>

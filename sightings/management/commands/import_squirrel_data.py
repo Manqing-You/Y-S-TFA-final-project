@@ -8,12 +8,13 @@ from sightings.models import sightings
 
 class Command(BaseCommand):
   help = 'Update the database of the day every morning'
+
   def add_arguments(self, parser):
-      parser.add_argument('path', type=str, help='file path')
+      parser.add_argument('path', type=str, help='文件路径')
 
   def handle(self, *args, **options):
-      path = options['path'] 
-      #print(path)
+      path = options['path']  # 拿到参数的值
+
       with open(path) as fp:
           data = list(csv.DictReader(fp))
 
@@ -25,7 +26,7 @@ class Command(BaseCommand):
           for i in data:
               detester = i['Date']
               date = datetime.datetime.strptime(detester,'%m%d%Y')
-              #print(date)
+
               squirrel = sightings()
               squirrel.Latitude = i["Y"]
               squirrel.Longitude = i["X"]
@@ -52,5 +53,5 @@ class Command(BaseCommand):
               squirrel.Approaches = testboolean(i['Approaches'])
               squirrel.Indifferent = testboolean(i['Indifferent'])
               squirrel.Runs_from = testboolean(i['Runs from'])
-              squirrel.save() 
+              squirrel.save()
 

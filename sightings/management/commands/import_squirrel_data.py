@@ -9,7 +9,7 @@ from sightings.models import sightings
 class Command(BaseCommand):
   help = 'Update the database of the day every morning'
   def add_arguments(self, parser):
-      parser.add_argument('path', type=str, help='文件路径')
+      parser.add_argument('path', type=str, help='file path')
 
   def handle(self, *args, **options):
       path = options['path'] 

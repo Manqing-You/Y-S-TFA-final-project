@@ -8,7 +8,6 @@ from sightings.models import sightings
 
 class Command(BaseCommand):
   help = 'Update the database of the day every morning'
-  # 接收参数
   def add_arguments(self, parser):
       parser.add_argument('path', type=str, help='文件路径')
 
@@ -53,5 +52,5 @@ class Command(BaseCommand):
               squirrel.Approaches = testboolean(i['Approaches'])
               squirrel.Indifferent = testboolean(i['Indifferent'])
               squirrel.Runs_from = testboolean(i['Runs from'])
-              squirrel.save() #保存到数据库
+              squirrel.save() 
 

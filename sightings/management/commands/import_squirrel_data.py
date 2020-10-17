@@ -13,7 +13,7 @@ class Command(BaseCommand):
       parser.add_argument('path', type=str, help='文件路径')
 
   def handle(self, *args, **options):
-      path = options['path']  # 拿到参数的值
+      path = options['path']  
 
       with open(path) as fp:
           data = list(csv.DictReader(fp))
